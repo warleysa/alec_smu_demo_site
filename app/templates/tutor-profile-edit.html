@@ -1,0 +1,41 @@
+    <!-- /templates/update_class.html  -->
+
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <h2>Edit Profile - {{ userInfo.full_name }}</h2>
+        </div>
+        <form method="POST" action="/edit-class/post/{{ userInfo.id }}" id="target" class="inner-form"> 
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="form-group">
+                <label for="c-name">Full Name:</label>
+                <input id="c-name" type="text" class="form-control" name="class_name" maxlength="50" value="{{ userInfo.full_name }}" required> 
+            </div>
+            <div class="form-group row">
+                <div class="col-6">
+                    <label for="c-dept">Email:</label>
+                    <input id="c-dept" type="email" class="form-control" name="dept" maxlength="10" value="{{ userInfo.email }}" required>
+                </div>
+                <div class="col-6">
+                    <label for="c-num">SMU ID:</label>
+                    <input id="c-num" type="text" class="form-control" name="number" maxlength="5" value="{{ userInfo.smu_id }}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="c-name">Password:</label>
+                <input id="c-name" type="text" class="form-control" name="class_name" maxlength="50" value="{{ userInfo.password_hash }}" required> 
+            </div>
+            {% if adminStatus %}
+                <div class="form-check mt-4">
+                  <label class="form-check-label">
+                    <input id="is-admin" type="checkbox" class="form-check-input form-control" name="admin-checkbox" value="">Admin account (All Permissions):
+                  </label>
+                </div>
+            {% endif %}
+            <button type="submit" class="btn btn-block btn-primary mt-4">Save Profile</button>
+        </form>
+    </div>
+    {% endblock %}

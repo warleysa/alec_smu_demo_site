@@ -1,0 +1,107 @@
+    <!-- /templates/base.html  -->
+
+    <!doctype html>
+    <html lang="en">
+      <head>
+          <!-- Required meta tags --> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="shortcut icon" href="{{url_for('static', filename='smu_trans_logo.png')}}">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+
+
+        <script src="http://malsup.github.com/jquery.form.js"></script> 
+        <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+        <title>{% block title %}{% endblock %}SMU ALEC Tutor Portal</title>
+      </head>
+      <body>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show fixed-top col-6 mx-auto mt-2" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Alert!</strong> {{ message }}
+            </div>
+            <script type="text/javascript">
+                setTimeout(function(){
+                    $(".alert").slideUp(800)
+                },5000); 
+            </script>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+            <nav class="navbar navbar-expand-md bg-light navbar-light">
+                <a class="navbar-brand" href="/home">
+                    <img src="{{url_for('static', filename='smu_trans_logo.png')}}" alt="logo" style="width:40px;" title="Home Page" alt="Home">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+
+                        <!-- Links -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/adminPage">Tutor Check-In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/adminPage">Admin View</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+        <div class="main-content">
+            <div class="container h-100">
+                <div class="row align-items-center h-100">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mx-auto">
+                        <div class="h-100 justify-content-center">
+                            {% block content %}  {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+          <p>Copyright © 2018. Southern Methodist University.</p>
+        </div>
+        <script src="{{ url_for('static', filename='custom.js')}}"></script>
+        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" /> -->
+
+      </body>
+    </html>

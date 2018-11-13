@@ -1,0 +1,33 @@
+    <!-- /templates/update_class.html  -->
+
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2>Edit Class</h2>
+        </div>
+        <form method="POST" action="/edit-class/post/{{ data.id }}" id="target" class="inner-form"> 
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="form-group">
+                <label for="c-name">Class:</label>
+                <input id="c-name" type="text" class="form-control" name="class_name" maxlength="50" value="{{ data.class_name }}" required> 
+            </div>
+            <div class="form-group row">
+                <div class="col-6">
+                    <label for="c-dept">Department (e.g. DISC):</label>
+                    <input id="c-dept" type="text" class="form-control" name="dept" maxlength="10" value="{{ data.dept }}" required>
+                </div>
+                <div class="col-6">
+                    <label for="c-num">Course Number (e.g. 1301):</label>
+                    <input id="c-num" type="text" class="form-control" name="number" maxlength="5" value="{{ data.number }}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="notes">Notes/Description:</label>
+                <textarea id="notes" type="text" class="form-control" maxlength="120" rows="3" name="desc" value="{{ data.desc }}"> </textarea>
+            </div>
+            <button type="submit" class="btn btn-block btn-primary">Update</button>
+        </form>
+    </div>
+    {% endblock %}

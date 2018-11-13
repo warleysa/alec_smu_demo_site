@@ -1,0 +1,45 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+      All Classes
+  </div>
+  <div>
+    <div class="card-body">
+      <h2>All Classes</h2>
+      <div class="table-container">
+        <table class="table table-striped table-hover nowrap" style="width:100%; padding-right: 50px;" id="profile-classes-table">
+          <thead>
+            <tr>
+              <th scope="col">Class Info</th>
+              <th scope="col">Department</th>
+              <th scope="col">Class Name</th>
+              <th scope="col">Add Class</th>
+            </tr>
+            <tr class="filter" id="filter-profile-classes">
+              <th scope="col"></th> 
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for class_info in all_classes %}
+            <tr id={{ class_info.id }}>
+              <th scope="row"> {{ class_info.class_info }}</th>
+              <td scope="row"> {{ class_info.class_name }} </td>
+              <td scope="row"> {{ class_info.dept }} </td>
+              <td scope="row">
+                <button type="submit" id="submit-class" class="btn btn-block btn-primary" onclick="addClassToProfile({{ user_id }},{{ class_info.id }},'{{ csrf_token() }}')">Add Class</button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+<!-- /templates/index.html  -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- <input class="form-control col-6" id="filter-input" type="text" placeholder="Search..">
+    <br> -->
+    <div class="card">
+<!--         <div class="card-header">
+            <a class="card-link">
+              ALEC Tutor Status
+            </a>
+        </div> -->
+        <div class="card-body">
+            <h2>ALEC Tutor Status</h2>
+                <div class="table-container">
+                    <table class="table table-striped table-hover nowrap" style="width:100%; padding-right: 50px;" id="location-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Info</th> 
+                                <th scope="col">Location</th>
+                                <th scope="col">Class Name</th>
+                                <th scope="col">Tutor Name</th>
+                            </tr>
+                            <tr class="filter" id="filter-location">
+                                <th scope="col"></th> 
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for class_info in current_tutors %}
+                            <tr id={{ class_info.id }}>
+                                <th scope="row">{{class_info.class_info }}</th>
+                                <td> {{ class_info.location }}</td>
+                                <td> {{ class_info.name }} </td>
+                                <td> {{ class_info.tutor_name }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

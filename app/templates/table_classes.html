@@ -1,0 +1,38 @@
+<div class="table-container">
+  <table class="table table-striped table-hover nowrap" style="width:100%; padding-right: 50px;" id="classes-table">
+    <thead>
+      <tr>
+        <th scope="col">Department</th>
+        <th scope="col">Number</th>
+        <th scope="col">Class Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+        <th scope="col">Delete</th>
+      </tr>
+      <tr class="filter">
+        <th scope="col"></th> 
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for class_name in classes %}
+      <tr id={{ class_name.id }}>
+        <th scope="row">{{class_name.dept }}</th>
+        <td> {{ class_name.number }} </td>
+        <td> {{ class_name.class_name }}</td>
+        <td> {{ class_name.desc }} </td>
+        <td> 
+          <a class="btn btn-primary" role="button" href="/edit/{{ class_name.id }}">Edit</a> 
+        </td>
+        <td>
+          <button class="btn btn-danger" data-toggle="modal" data-target="#confirmation-modal" data-id="{{ class_name.id }}" data-dept="{{ class_name.dept }}" data-number="{{ class_name.number }}">Remove Class</button> 
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

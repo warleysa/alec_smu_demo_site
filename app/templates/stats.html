@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Tutor Stats</h2>
+    <div id="accordion-1" style="padding: 10px;">
+        <div class="card">
+            <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" href="#collapse-classes-stats-table">
+                    Classes Tutored
+                </a>
+            </div>
+            <div id="collapse-classes-stats-table" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                    <h2>Classes</h2>
+                    <div class="table-container">
+                        <table class="table table-striped table-hover nowrap" style="width:100%; padding-right: 50px;" id="classes-stats-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Class Info</th>
+                                    <th scope="col">Class Name</th>
+                                    <th scope="col">Remove Class</th>
+                                </tr>
+                                <tr class="filter" id="filter-classes-stats">
+                                    <th scope="col"></th> 
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for class_info in tutor_class_info %}
+                                <tr id={{ class_info.id }}>
+                                    <th scope="row"> {{ class_info.class_info }} </th>
+                                    <td scope="row"> {{ class_info.class_name }} </td>
+                                    <td> 
+                                        <a class="btn btn-danger" role="button" href="/stats/{{ class_info.id }}">Remove Class</a> 
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- All Sessions Tutored WITH Students -->
+
+        <div class="card">
+            <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" href="#collapse-tutoring-sessions-table">
+                    Sessions with Students
+                </a>
+            </div>
+            <div id="collapse-tutoring-sessions-table" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                    <h2>Tutoring Sessions</h2>
+                    <div class="table-container">
+                        <table class="table table-striped table-hover nowrap" style="width:100%; padding-right: 50px;" id="tutoring-sessions-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Class</th>
+                                    <th scope="col">Start</th>
+                                    <th scope="col">End</th>
+                                    <th scope="col">Total Time (min)</th>
+                                    <th scope="col">Remove</th>
+                                    
+                                </tr>
+                                <tr class="filter" id="filter-tutor-sessions">
+                                    <th scope="col"></th> 
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for class_name in tutoring_sessions %}
+                                <tr id={{ class_name.id }}>
+                                    <th scope="row"> {{ class_name.class_name }} </th>
+                                    <td scope="row"> {{ class_name.start_time }} </td>
+                                    <td scope="row"> {{ class_name.end_time }} </td>
+                                    <td scope="row"> {{ class_name.total_time }} </td>
+                                    <td> 
+                                        <a class="btn btn-danger" role="button" href="">Remove Session</a> 
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- All Sessions Logged in the ALEC -->
+
+        <div class="card">
+            <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" href="#collapse-alec-sessions-table">
+                    Sessions in the ALEC
+                </a>
+            </div>
+            <div id="collapse-alec-sessions-table" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                    <h2>Sessions in ALEC</h2>
+                    <div class="table-container">
+                        <table class="table table-striped table-hover nowrap" style="width:100%; padding-right: 50px;" id="alec-sessions-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Check In Time</th>
+                                    <th scope="col">Check Out Time</th>
+                                    <th scope="col">Total Time</th>
+                                    <th scope="col">Remove Session</th>
+                                </tr>
+                                <tr class="filter" id="filter-alec-sessions">
+                                    <th scope="col"></th> 
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for start_time in alec_sessions %}
+                                <tr id={{ start_time.id }}>
+                                    <th scope="row"> {{ start_time.start_time }} </th>
+                                    <td scope="row"> {{ start_time.end_time }} </td>total_time
+                                    <td scope="row"> {{ start_time.total_time }} </td>
+                                    <td> 
+                                        <a class="btn btn-danger" role="button" href="">Remove Session</a> 
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

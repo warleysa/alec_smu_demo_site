@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style-login.css') }}">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show fixed-top col-6 mx-auto mt-2" role="alert">
+    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+		</button>
+      	<strong>Alert!</strong> {{ message }}
+    </div>
+    <script type="text/javascript">
+    	setTimeout(function(){
+        	$(".alert").slideUp(800)
+    	},5000); 
+    </script>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+{% block body %}
+<nav class="navbar navbar-expand-md bg-light navbar-light">
+    <a class="navbar-brand" href="home">
+        <img src="{{url_for('static', filename='smu_trans_logo.png')}}" alt="logo" style="width:40px;" title="Home Page" alt="Home">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+
+            <!-- Links -->
+            <li class="nav-item">
+                <a class="nav-link" href="home"><strong>Home</strong></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="register">Register as Tutor</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid bg-light pt-1" style="padding-bottom: 4em;">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body">
+				<form method="POST" class="form-signin" novalidate>
+				    <div class="text-center">
+                        <img class="img-fluid mx-auto" src="{{url_for('static', filename='smu_trans_logo.png')}}" alt="SMU ALEC Login Page" width="20%" height="20%">
+                    </div>
+				    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+				    <h1 class="text-center mb-2">Tutor Sign In</h1>
+				    <div>
+						{{ form.smu_id.label }}<br>
+						{{ form.smu_id(size=32, class_="form-control") }}
+				    </div>
+				    <div>
+						{{ form.password.label }}<br>
+						{{ form.password(size=32, class_="form-control") }}
+				    </div>
+				  	<div class="checkbox">
+
+				    	<p>{{ form.remember_me }}{{ form.remember_me.label(class_="pl-2") }}</p>
+				  	</div>
+				  	<p>{{ form.submit(class_="btn btn-lg btn-primary btn-block") }}</p>
+				  	<p class="mt-5 mb-3 text-muted text-center">Copyright © 2018. Southern Methodist University.</p>
+					<br>
+				</form>
+			</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
